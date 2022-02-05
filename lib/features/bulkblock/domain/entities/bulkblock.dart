@@ -5,8 +5,8 @@ class BulkBlock extends Equatable {
   final String clientName;
   final String dealType;
   final int quantity;
-  final int value;
-  final int tradePrice;
+  final double value;
+  final double tradePrice;
   final DateTime dealDate;
   final String exchange;
 
