@@ -45,10 +45,10 @@ class BulkBlockModel extends BulkBlock {
       finCode: map["FinCode"] ?? '',
       clientName: map["ClientName"] ?? '',
       dealType: map["DealType"] ?? '',
-      quantity: int.parse(map["Quantitiy"]),
+      quantity: int.parse(map["Quantity"]),
       value: double.parse(map["Value"]),
       tradePrice: double.parse(map["TradePrice"]),
-      dealDate: DateTime.parse(map["DateTime"]),
+      dealDate: DateTime.parse(map["DealDate"]),
       exchange: map["Exchange"] ?? '',
     );
   }
