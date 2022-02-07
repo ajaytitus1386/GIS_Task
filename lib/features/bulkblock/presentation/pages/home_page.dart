@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gis_task/features/bulkblock/presentation/pages/block_deals_page.dart';
-import 'package:gis_task/features/bulkblock/presentation/pages/bulk_deals_page.dart';
+import 'package:gis_task/features/bulkblock/presentation/global/event_dispatchers.dart';
+import 'package:gis_task/features/bulkblock/presentation/pages/bulk_block_deals_page.dart';
 import 'package:gis_task/features/bulkblock/presentation/styling/color_palettes.dart';
 import 'package:gis_task/features/bulkblock/presentation/styling/responsive_size.dart';
 import 'package:gis_task/features/bulkblock/presentation/styling/text_styles.dart';
-import 'package:gis_task/features/bulkblock/presentation/widgets/client_name_search_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,6 +15,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool isBulkDealTypeSelected = true;
   String dealTypeSelected = 'All';
+  String clientNameFromTextField = '';
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class _HomePageState extends State<HomePage> {
                       isBulkDealTypeSelected = true;
                     });
                   },
-                  buttonText: 'Bulk Deals',
+                  buttonText: 'Bulk Deal',
                   isSelected: isBulkDealTypeSelected),
               buildBulkBlockDealButton(
                   dealFunction: () {
@@ -43,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                       isBulkDealTypeSelected = false;
                     });
                   },
-                  buttonText: 'Block Deals',
+                  buttonText: 'Block Deal',
                   isSelected: !isBulkDealTypeSelected),
             ],
           ),
@@ -80,17 +81,64 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          const ClientNameSearchBar(),
-          isBulkDealTypeSelected
-              ? BulkDealsPage(
-                  dealTypeSelected: dealTypeSelected,
-                )
-              : BlockDealsPage(
-                  dealTypeSelected: dealTypeSelected,
-                )
+          // Search Bar for client Name
+          buildClientNameSearchBar(),
+          // Display the Bulk or Block Deals
+          if (isBulkDealTypeSelected)
+            BulkBlockDealsPage(
+              dealTypeSelected: dealTypeSelected,
+              clientNameToFilter: clientNameFromTextField,
+              getBulkOrBlockDeals: () =>
+                  getAllBulkDealsByDealType(context, dealTypeSelected),
+            )
+          else
+            BulkBlockDealsPage(
+              dealTypeSelected: dealTypeSelected,
+              clientNameToFilter: clientNameFromTextField,
+              getBulkOrBlockDeals: () =>
+                  getAllBlockDealsByDealType(context, dealTypeSelected),
+            )
         ],
       ),
     );
+  }
+
+  Padding buildClientNameSearchBar() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: highlight,
+            border: Border.all(color: midGrey)),
+        child: ListTile(
+          title: TextField(
+            onChanged: (value) => changeClientName(value),
+            controller: controller,
+            decoration: InputDecoration(
+                border: const UnderlineInputBorder(borderSide: BorderSide.none),
+                hintText: 'Search Client Name',
+                hintStyle:
+                    TextStyle(color: midGrey, fontWeight: FontWeight.w500),
+                focusedBorder:
+                    const UnderlineInputBorder(borderSide: BorderSide.none)),
+          ),
+          trailing: IconButton(
+            onPressed: () {
+              controller.clear();
+              changeClientName('');
+            },
+            icon: const Icon(Icons.close),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void changeClientName(String enteredClientName) {
+    setState(() {
+      clientNameFromTextField = enteredClientName;
+    });
   }
 
   Container buildDealTypeButton(
@@ -98,6 +146,7 @@ class _HomePageState extends State<HomePage> {
       required String dealTitle,
       required bool isSelected}) {
     return Container(
+      width: SizeConfig.tileWidth,
       decoration: BoxDecoration(
           color: _mapDealTypeToColor(dealTitle),
           borderRadius: BorderRadius.circular(20),
