@@ -11,3 +11,17 @@ Color background = const Color(0xffF2F2EF);
 
 Color buyGreen = const Color.fromRGBO(106, 165, 99, 1.0);
 Color sellRed = const Color.fromRGBO(207, 68, 72, 1.0);
+
+LinearGradient splashScreenGradient = LinearGradient(
+    begin: Alignment.topRight,
+    end: Alignment.bottomLeft,
+    colors: [
+      pacificBlue,
+      const Color(0xff24c6dc),
+      const Color(0xff514a9d),
+    ],
+    stops: const [
+      0.1,
+      0.4,
+      0.9
+    ]);
