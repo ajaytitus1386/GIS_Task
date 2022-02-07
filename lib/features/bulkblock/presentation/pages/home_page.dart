@@ -21,84 +21,86 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Scaffold(
-      backgroundColor: background,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          //Bulk or Block Button
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              buildBulkBlockDealButton(
-                  dealFunction: () {
-                    setState(() {
-                      isBulkDealTypeSelected = true;
-                    });
-                  },
-                  buttonText: 'Bulk Deal',
-                  isSelected: isBulkDealTypeSelected),
-              buildBulkBlockDealButton(
-                  dealFunction: () {
-                    setState(() {
-                      isBulkDealTypeSelected = false;
-                    });
-                  },
-                  buttonText: 'Block Deal',
-                  isSelected: !isBulkDealTypeSelected),
-            ],
-          ),
-          // Filters based on deal type
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: background,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            //Bulk or Block Button
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                buildDealTypeButton(
+                buildBulkBlockDealButton(
                     dealFunction: () {
                       setState(() {
-                        dealTypeSelected = 'All';
+                        isBulkDealTypeSelected = true;
                       });
                     },
-                    dealTitle: 'All',
-                    isSelected: dealTypeSelected == 'All'),
-                buildDealTypeButton(
+                    buttonText: 'Bulk Deal',
+                    isSelected: isBulkDealTypeSelected),
+                buildBulkBlockDealButton(
                     dealFunction: () {
                       setState(() {
-                        dealTypeSelected = 'Buy';
+                        isBulkDealTypeSelected = false;
                       });
                     },
-                    dealTitle: 'Buy',
-                    isSelected: dealTypeSelected == 'Buy'),
-                buildDealTypeButton(
-                    dealFunction: () {
-                      setState(() {
-                        dealTypeSelected = 'Sell';
-                      });
-                    },
-                    dealTitle: 'Sell',
-                    isSelected: dealTypeSelected == 'Sell')
+                    buttonText: 'Block Deal',
+                    isSelected: !isBulkDealTypeSelected),
               ],
             ),
-          ),
-          // Search Bar for client Name
-          buildClientNameSearchBar(),
-          // Display the Bulk or Block Deals
-          if (isBulkDealTypeSelected)
-            BulkBlockDealsPage(
-              dealTypeSelected: dealTypeSelected,
-              clientNameToFilter: clientNameFromTextField,
-              getBulkOrBlockDeals: () =>
-                  getAllBulkDealsByDealType(context, dealTypeSelected),
-            )
-          else
-            BulkBlockDealsPage(
-              dealTypeSelected: dealTypeSelected,
-              clientNameToFilter: clientNameFromTextField,
-              getBulkOrBlockDeals: () =>
-                  getAllBlockDealsByDealType(context, dealTypeSelected),
-            )
-        ],
+            // Filters based on deal type
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  buildDealTypeButton(
+                      dealFunction: () {
+                        setState(() {
+                          dealTypeSelected = 'All';
+                        });
+                      },
+                      dealTitle: 'All',
+                      isSelected: dealTypeSelected == 'All'),
+                  buildDealTypeButton(
+                      dealFunction: () {
+                        setState(() {
+                          dealTypeSelected = 'Buy';
+                        });
+                      },
+                      dealTitle: 'Buy',
+                      isSelected: dealTypeSelected == 'Buy'),
+                  buildDealTypeButton(
+                      dealFunction: () {
+                        setState(() {
+                          dealTypeSelected = 'Sell';
+                        });
+                      },
+                      dealTitle: 'Sell',
+                      isSelected: dealTypeSelected == 'Sell')
+                ],
+              ),
+            ),
+            // Search Bar for client Name
+            buildClientNameSearchBar(),
+            // Display the Bulk or Block Deals
+            if (isBulkDealTypeSelected)
+              BulkBlockDealsPage(
+                dealTypeSelected: dealTypeSelected,
+                clientNameToFilter: clientNameFromTextField,
+                getBulkOrBlockDeals: () =>
+                    getAllBulkDealsByDealType(context, dealTypeSelected),
+              )
+            else
+              BulkBlockDealsPage(
+                dealTypeSelected: dealTypeSelected,
+                clientNameToFilter: clientNameFromTextField,
+                getBulkOrBlockDeals: () =>
+                    getAllBlockDealsByDealType(context, dealTypeSelected),
+              )
+          ],
+        ),
       ),
     );
   }

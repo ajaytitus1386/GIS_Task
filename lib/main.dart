@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gis_task/features/bulkblock/presentation/bloc/bulkblock_bloc.dart';
-import 'package:gis_task/features/bulkblock/presentation/pages/home_page.dart';
+import 'package:gis_task/features/bulkblock/presentation/widgets/splash_screen_widget.dart';
 import 'package:gis_task/injection_container.dart';
 import 'injection_container.dart' as di;
 
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const SafeArea(child: HomePage())),
+          home: const SafeArea(child: SplashScreenWidget())),
     );
   }
 }
