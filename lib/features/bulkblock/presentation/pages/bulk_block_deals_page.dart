@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gis_task/features/bulkblock/presentation/bloc/bulkblock_bloc.dart';
 import 'package:gis_task/features/bulkblock/presentation/styling/color_palettes.dart';
 import 'package:gis_task/features/bulkblock/presentation/styling/responsive_size.dart';
+import 'package:gis_task/features/bulkblock/presentation/styling/text_styles.dart';
 import 'package:gis_task/features/bulkblock/presentation/widgets/bulkblock_list_builder.dart';
 
 typedef BulkOrBlockFunction = dynamic Function(
@@ -41,6 +42,11 @@ class _BulkBlockDealsPageState extends State<BulkBlockDealsPage> {
         return BulkBlockListBuilder(
           bulkBlockList: state.bulkBlockList,
           clientNameToFilter: widget.clientNameToFilter,
+        );
+      } else if (state is BulkblockError) {
+        return Text(
+          'Unable to fetch deals: ' + state.message,
+          style: buildNoResultsStyle(),
         );
       }
       return Center(
