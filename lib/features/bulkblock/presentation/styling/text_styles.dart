@@ -11,3 +11,11 @@ TextStyle buildDealTypeStyle({required bool isSelected}) {
       fontSize: 20,
       fontWeight: FontWeight.w500);
 }
+
+TextStyle buildNoResultsStyle() {
+  return TextStyle(
+    color: textGray,
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+  );
+}
