@@ -196,6 +196,8 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(8.0),
         child: TextButton(
             onPressed: dealFunction,
+            style: ButtonStyle(
+                overlayColor: MaterialStateProperty.all(Colors.transparent)),
             child: Text(
               buttonText,
               style: buildTextButtonStyle(),
