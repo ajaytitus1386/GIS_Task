@@ -7,7 +7,9 @@ import 'package:gis_task/features/bulkblock/presentation/styling/color_palettes.
 import 'package:gis_task/features/bulkblock/presentation/styling/responsive_size.dart';
 
 class SplashScreenWidget extends StatefulWidget {
-  const SplashScreenWidget({Key? key}) : super(key: key);
+  final MaterialPageRoute nextRoute;
+  const SplashScreenWidget({Key? key, required this.nextRoute})
+      : super(key: key);
 
   @override
   State<SplashScreenWidget> createState() => _SplashScreenWidgetState();
@@ -18,11 +20,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 5), () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const HomePage(),
-          ));
+      Navigator.push(context, widget.nextRoute);
     });
   }
 
