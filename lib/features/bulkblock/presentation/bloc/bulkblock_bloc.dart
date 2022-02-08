@@ -72,7 +72,7 @@ class BulkblockBloc extends Bloc<BulkblockEvent, BulkblockState> {
   String _mapFailureToMessage(Failure failure) {
     switch (failure.runtimeType) {
       case ServerFailure:
-        return serverFailureMessage;
+        return failure.toString();
       default:
         return 'Unexpected Error';
     }

@@ -45,8 +45,9 @@ class _BulkBlockDealsPageState extends State<BulkBlockDealsPage> {
         );
       } else if (state is BulkblockError) {
         return Text(
-          'Unable to fetch deals: ' + state.message,
+          'Unable to fetch deals:\n' + state.message,
           style: buildNoResultsStyle(),
+          textAlign: TextAlign.center,
         );
       }
       return Center(

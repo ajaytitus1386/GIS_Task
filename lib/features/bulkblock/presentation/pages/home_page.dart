@@ -3,7 +3,8 @@ import 'package:gis_task/features/bulkblock/presentation/global/event_dispatcher
 import 'package:gis_task/features/bulkblock/presentation/pages/bulk_block_deals_page.dart';
 import 'package:gis_task/features/bulkblock/presentation/styling/color_palettes.dart';
 import 'package:gis_task/features/bulkblock/presentation/styling/responsive_size.dart';
-import 'package:gis_task/features/bulkblock/presentation/styling/text_styles.dart';
+import 'package:gis_task/features/bulkblock/presentation/widgets/bulk_block_deal_button.dart';
+import 'package:gis_task/features/bulkblock/presentation/widgets/deal_type_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                buildBulkBlockDealButton(
+                BulkBlockDealButton(
                     dealFunction: () {
                       setState(() {
                         isBulkDealTypeSelected = true;
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                     },
                     buttonText: 'Bulk Deal',
                     isSelected: isBulkDealTypeSelected),
-                buildBulkBlockDealButton(
+                BulkBlockDealButton(
                     dealFunction: () {
                       setState(() {
                         isBulkDealTypeSelected = false;
@@ -55,7 +56,7 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  buildDealTypeButton(
+                  DealTypeButton(
                       dealFunction: () {
                         setState(() {
                           dealTypeSelected = 'All';
@@ -63,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                       },
                       dealTitle: 'All',
                       isSelected: dealTypeSelected == 'All'),
-                  buildDealTypeButton(
+                  DealTypeButton(
                       dealFunction: () {
                         setState(() {
                           dealTypeSelected = 'Buy';
@@ -71,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                       },
                       dealTitle: 'Buy',
                       isSelected: dealTypeSelected == 'Buy'),
-                  buildDealTypeButton(
+                  DealTypeButton(
                       dealFunction: () {
                         setState(() {
                           dealTypeSelected = 'Sell';
@@ -141,66 +142,5 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       clientNameFromTextField = enteredClientName;
     });
-  }
-
-  Container buildDealTypeButton(
-      {required Function() dealFunction,
-      required String dealTitle,
-      required bool isSelected}) {
-    return Container(
-      width: SizeConfig.tileWidth,
-      decoration: BoxDecoration(
-          color: _mapDealTypeToColor(dealTitle),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-              color: isSelected ? textGray : Colors.transparent,
-              style: BorderStyle.solid,
-              width: 2)),
-      child: TextButton(
-        onPressed: dealFunction,
-        child: Text(
-          dealTitle,
-          style: buildDealTypeStyle(isSelected: isSelected),
-        ),
-      ),
-    );
-  }
-
-  Color _mapDealTypeToColor(String dealType) {
-    switch (dealType) {
-      case 'All':
-        return pacificBlue;
-      case 'Buy':
-        return buyGreen;
-      case 'Sell':
-        return sellRed;
-      default:
-        return pacificBlue;
-    }
-  }
-
-  Container buildBulkBlockDealButton(
-      {required Function() dealFunction,
-      required String buttonText,
-      required bool isSelected}) {
-    return Container(
-      width: SizeConfig.screenWidth / 2,
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-              color: isSelected ? outrageousOrange : Colors.transparent,
-              width: 2.0),
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: TextButton(
-            onPressed: dealFunction,
-            child: Text(
-              buttonText,
-              style: buildTextButtonStyle(),
-            )),
-      ),
-    );
   }
 }
