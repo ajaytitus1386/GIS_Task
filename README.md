@@ -1,16 +1,57 @@
-# gis_task
+# Bulk and Block Deals Viewer
 
-A Task made for Go India Stocks
+A task made for Go India Stocks, with data provided by GIS API service
 
-## Getting Started
+- [Bulk and Block Deals Viewer](#bulk-and-block-deals-viewer)
+  - [:rocket: Getting Started](#rocket-getting-started)
+  - [:ledger: Architecture](#ledger-architecture)
+    - [:file_folder: Data Layer](#file_folder-data-layer)
+    - [:briefcase: Domain Layer](#briefcase-domain-layer)
+    - [:iphone: Presentation Layer](#iphone-presentation-layer)
 
-This project is a starting point for a Flutter application.
+## :rocket: Getting Started
 
-A few resources to get you started if this is your first Flutter project:
+1.  Install Flutter by following the official instruction at [https://flutter.dev/docs/get-started/install](https://flutter.dev/docs/get-started/install)
+    &nbsp;
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+2.  Clone this repo using the link in an empty directory
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+    ```shell
+    git clone https://github.com/ajaytitus1386/GIS_Task.git
+    ```
+
+3.  Go to the root of the project and install the dependencies
+    ```shell
+    flutter pub get
+    ```
+4.  Next, run the app on a connected emulator device using
+    ```shell
+    flutter run
+    ```
+
+## :ledger: Architecture
+
+The architecture is sub-divided into three tiers : Data, Domain and Presentation
+
+### :file_folder: Data Layer
+
+This layer contains implementations for remote data calls and data models
+
+- **datasources** : Remote data source to communicate with API endpoints
+- **models** : Models of Data Objects and conversion logic to and from JSON
+- **repo** : Contains the implementation of the repositories contracts in the domain layer.
+
+### :briefcase: Domain Layer
+
+- **entities** : The abstract class of the main data objects used in the business logic
+- **repos** : Repository contracts of the intended methods to be implemented
+- **usecases** : Intermediaries class where the business logic in the repos is executed.
+
+### :iphone: Presentation Layer
+
+Focuses on Flutter layout and the Widget Tree. Anything and everything to do with the UI is structured here
+
+- **bloc** : contains the Events and States and a BLoC file to manage state based on triggered events
+- **pages** : The individual views of the UI
+- **widgets** : Reusuable and Extractable widget components
+- **styling** : Constants for Colors, TextStyles, Sizes and so on
