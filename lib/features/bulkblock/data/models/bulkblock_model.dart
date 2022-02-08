@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:gis_task/features/bulkblock/domain/entities/bulkblock.dart';
 
+/// Takes a JSON String of a list of response data and coverts it to `List<BulkBlockModel>`
 List<BulkBlockModel> bulkblocksFromJson(String str) {
   final responseJsonMap = json.decode(str);
   final dataMap = responseJsonMap["Data"];
@@ -10,6 +11,7 @@ List<BulkBlockModel> bulkblocksFromJson(String str) {
       dataMap.map((bulkBlockJson) => BulkBlockModel.fromMap(bulkBlockJson)));
 }
 
+/// Converts a `List<BulkBlockModel>` into a JSON string of list of objects
 String bulkblockToJson(List<BulkBlockModel> bulkblocks) {
   final result =
       List<dynamic>.from(bulkblocks.map((bulkblock) => bulkblock.toMap()));
