@@ -19,6 +19,7 @@ class BulkBlockDealButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    var textOpacity = isSelected ? 1.0 : 0.75;
     return Container(
       width: SizeConfig.screenWidth / 2,
       decoration: BoxDecoration(
@@ -34,9 +35,12 @@ class BulkBlockDealButton extends StatelessWidget {
             onPressed: dealFunction,
             style: ButtonStyle(
                 overlayColor: MaterialStateProperty.all(Colors.transparent)),
-            child: Text(
-              buttonText,
-              style: buildTextButtonStyle(),
+            child: Opacity(
+              opacity: textOpacity,
+              child: Text(
+                buttonText,
+                style: buildTextButtonStyle(),
+              ),
             )),
       ),
     );
