@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:gis_task/features/bulkblock/presentation/pages/home_page.dart';
 import 'package:gis_task/features/bulkblock/presentation/styling/color_palettes.dart';
 import 'package:gis_task/features/bulkblock/presentation/styling/responsive_size.dart';
 
