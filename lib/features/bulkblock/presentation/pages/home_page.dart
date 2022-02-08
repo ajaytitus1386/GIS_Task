@@ -107,6 +107,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Padding buildClientNameSearchBar() {
+    var isInputEmpty = clientNameFromTextField != '';
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Container(
@@ -126,12 +127,15 @@ class _HomePageState extends State<HomePage> {
                 focusedBorder:
                     const UnderlineInputBorder(borderSide: BorderSide.none)),
           ),
-          trailing: IconButton(
-            onPressed: () {
-              controller.clear();
-              changeClientName('');
-            },
-            icon: const Icon(Icons.close),
+          trailing: Visibility(
+            visible: isInputEmpty,
+            child: IconButton(
+              onPressed: () {
+                controller.clear();
+                changeClientName('');
+              },
+              icon: const Icon(Icons.close),
+            ),
           ),
         ),
       ),
