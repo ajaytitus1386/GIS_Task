@@ -17,20 +17,8 @@ class GetBulkDealsByDealType extends BulkblockEvent {
   const GetBulkDealsByDealType(this.dealType);
 }
 
-// class GetBulkdealsByClientName extends BulkblockEvent {
-//   final String clientName;
-
-//   const GetBulkdealsByClientName(this.clientName);
-// }
-
 class GetBlockDealsByDealType extends BulkblockEvent {
   final String dealType;
 
   const GetBlockDealsByDealType(this.dealType);
 }
-
-// class GetBlockDealsByClientName extends BulkblockEvent {
-//   final String clientName;
-
-//   const GetBlockDealsByClientName(this.clientName);
-// }
