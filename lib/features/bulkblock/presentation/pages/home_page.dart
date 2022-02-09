@@ -4,6 +4,7 @@ import 'package:gis_task/features/bulkblock/presentation/pages/bulk_block_deals_
 import 'package:gis_task/features/bulkblock/presentation/styling/color_palettes.dart';
 import 'package:gis_task/features/bulkblock/presentation/styling/responsive_size.dart';
 import 'package:gis_task/features/bulkblock/presentation/widgets/bulk_block_deal_button.dart';
+import 'package:gis_task/features/bulkblock/presentation/widgets/client_name_search_bar.dart';
 import 'package:gis_task/features/bulkblock/presentation/widgets/deal_type_button.dart';
 
 class HomePage extends StatefulWidget {
@@ -84,7 +85,11 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             // Search Bar for client Name
-            buildClientNameSearchBar(),
+            ClientNameSearchBar(
+              clientNameFromTextField: clientNameFromTextField,
+              controller: controller,
+              changeClientName: changeClientName,
+            ),
             // Display the Bulk or Block Deals
             if (isBulkDealTypeSelected)
               BulkBlockDealsPage(
@@ -101,42 +106,6 @@ class _HomePageState extends State<HomePage> {
                     getAllBlockDealsByDealType(context, dealTypeSelected),
               )
           ],
-        ),
-      ),
-    );
-  }
-
-  Padding buildClientNameSearchBar() {
-    var isInputEmpty = clientNameFromTextField != '';
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-            color: highlight,
-            border: Border.all(color: midGrey)),
-        child: ListTile(
-          title: TextField(
-            onChanged: (value) => changeClientName(value),
-            controller: controller,
-            decoration: InputDecoration(
-                border: const UnderlineInputBorder(borderSide: BorderSide.none),
-                hintText: 'Search Client Name',
-                hintStyle:
-                    TextStyle(color: midGrey, fontWeight: FontWeight.w500),
-                focusedBorder:
-                    const UnderlineInputBorder(borderSide: BorderSide.none)),
-          ),
-          trailing: Visibility(
-            visible: isInputEmpty,
-            child: IconButton(
-              onPressed: () {
-                controller.clear();
-                changeClientName('');
-              },
-              icon: const Icon(Icons.close),
-            ),
-          ),
         ),
       ),
     );
