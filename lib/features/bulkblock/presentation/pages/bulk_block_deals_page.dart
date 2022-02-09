@@ -6,9 +6,6 @@ import 'package:gis_task/features/bulkblock/presentation/styling/responsive_size
 import 'package:gis_task/features/bulkblock/presentation/styling/text_styles.dart';
 import 'package:gis_task/features/bulkblock/presentation/widgets/bulkblock_list_builder.dart';
 
-typedef BulkOrBlockFunction = dynamic Function(
-    BuildContext context, String dealTypeSelected);
-
 class BulkBlockDealsPage extends StatefulWidget {
   final String dealTypeSelected;
   final String clientNameToFilter;
