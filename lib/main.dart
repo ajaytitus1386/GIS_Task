@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider<BulkblockBloc>(
       create: (_) => sl<BulkblockBloc>(),
       child: MaterialApp(
-          title: 'Flutter Demo',
+          title: 'GIS Task',
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
