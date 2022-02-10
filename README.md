@@ -8,9 +8,10 @@ A task made for Go India Stocks, with data provided by GIS API service
     - [:file_folder: Data Layer](#file_folder-data-layer)
     - [:briefcase: Domain Layer](#briefcase-domain-layer)
     - [:iphone: Presentation Layer](#iphone-presentation-layer)
-  - [The User Interface](#the-user-interface)
-    - [Bulk deals](#bulk-deals)
-    - [Block deals](#block-deals)
+  - [The User Interface Flow](#the-user-interface-flow)
+    - [Basic Overview](#basic-overview)
+    - [Bulk Deals](#bulk-deals)
+    - [Block Deals](#block-deals)
     - [Search by Client Name](#search-by-client-name)
 
 ## :rocket: Getting Started
@@ -60,16 +61,29 @@ Focuses on Flutter layout and the Widget Tree. Anything and everything to do wit
 - **widgets** : Reusuable and Extractable widget components
 - **styling** : Constants for Colors, TextStyles, Sizes and so on
 
-## The User Interface
+## The User Interface Flow
 
-### Bulk deals
+### Basic Overview
+
+1. The app loads through the splash screen and into the home page which triggers an event to fetch particular data from the API.
+2. The **Bussines Logic Controller** is listening for these events and when triggered it runs the corresponding implementation via the domain layer to the data layer.
+3. Any data that needs to be passed back to the presentation layer is held in a particular **State** accessible to the Widget Tree.
+
+### Bulk Deals
+
+The initial view of the app after the splash screen which displays all the bulk deals after fetching data from the API
+The three tiles **All, Buy, Sell** can be used to fetch bulk deals that fall under the specified DealType.
 
 <img src="screenshots\bulk_deals.PNG" alt="Bulk Deals View">
 
-### Block deals
+### Block Deals
+
+Effectively the same as the Bulk deals page however, this one fetches from the API using different query parameters for Block Deals.
 
 <img src="screenshots\block_deals.PNG" alt="Block Deals View">
 
 ### Search by Client Name
+
+Tapping on the Search Client Name bar will bring up the device keyboard and based on the input will filter the fetched data in the state by the **ClientName** attribute. This will instantly re-render the list to only show matching results or if none match, it displays a message to convey as such.
 
 <img src="screenshots\search_by_client_name.PNG" alt="Search Bar Client Name">
