@@ -8,6 +8,10 @@ A task made for Go India Stocks, with data provided by GIS API service
     - [:file_folder: Data Layer](#file_folder-data-layer)
     - [:briefcase: Domain Layer](#briefcase-domain-layer)
     - [:iphone: Presentation Layer](#iphone-presentation-layer)
+  - [The User Interface](#the-user-interface)
+    - [Bulk deals](#bulk-deals)
+    - [Block deals](#block-deals)
+    - [Search by Client Name](#search-by-client-name)
 
 ## :rocket: Getting Started
 
@@ -55,3 +59,17 @@ Focuses on Flutter layout and the Widget Tree. Anything and everything to do wit
 - **pages** : The individual views of the UI
 - **widgets** : Reusuable and Extractable widget components
 - **styling** : Constants for Colors, TextStyles, Sizes and so on
+
+## The User Interface
+
+### Bulk deals
+
+<img src="screenshots\bulk_deals.PNG" alt="Bulk Deals View">
+
+### Block deals
+
+<img src="screenshots\block_deals.PNG" alt="Block Deals View">
+
+### Search by Client Name
+
+<img src="screenshots\search_by_client_name.PNG" alt="Search Bar Client Name">
