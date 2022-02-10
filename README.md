@@ -28,7 +28,7 @@ A task made for Go India Stocks, with data provided by GIS API service
     ```shell
     flutter pub get
     ```
-4.  Next, run the app on a connected emulator device using
+4.  Next, run the app on a connected device such as a Android phone via USB or an Android Virtaul Device
     ```shell
     flutter run
     ```
