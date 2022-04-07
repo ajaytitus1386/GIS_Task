@@ -1,25 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gis_task/features/bulkblock/presentation/bloc/bulkblock_bloc.dart';
+import 'package:gis_task/features/bulkblock/presentation/cubit/bulkcube_cubit.dart';
 
 void dispatchGetAllBulkDeals(BuildContext context) {
-  BlocProvider.of<BulkblockBloc>(context).add(GetAllBulkDeals());
+  final bulkCubeCubit = context.read<BulkcubeCubit>();
+  bulkCubeCubit.getAllBulkDeals();
 }
 
 void dispatchGetAllBlockDeals(BuildContext context) {
-  BlocProvider.of<BulkblockBloc>(context).add(GetAllBlockDeals());
+  final bulkCubeCubit = context.read<BulkcubeCubit>();
+  bulkCubeCubit.getAllBlockDeals();
 }
 
 void dispatchGetBulkDealsByDealType(
     BuildContext context, String dealTypeToSelect) {
-  BlocProvider.of<BulkblockBloc>(context)
-      .add(GetBulkDealsByDealType(dealTypeToSelect));
+  final bulkCubeCubit = context.read<BulkcubeCubit>();
+  bulkCubeCubit.getBulkDealsByDealType(dealTypeToSelect);
 }
 
 void dispatchGetBlockDealsByDealType(
     BuildContext context, String dealTypeToSelect) {
-  BlocProvider.of<BulkblockBloc>(context)
-      .add(GetBlockDealsByDealType(dealTypeToSelect));
+  final bulkCubeCubit = context.read<BulkcubeCubit>();
+  bulkCubeCubit.getBlockDealsByDealType(dealTypeToSelect);
 }
 
 void getAllBlockDealsByDealType(BuildContext context, String dealTypeSelected) {
