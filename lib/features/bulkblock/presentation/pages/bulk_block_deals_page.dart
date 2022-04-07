@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gis_task/features/bulkblock/presentation/bloc/bulkblock_bloc.dart';
+import 'package:gis_task/features/bulkblock/presentation/cubit/bulkcube_cubit.dart';
 import 'package:gis_task/features/bulkblock/presentation/styling/color_palettes.dart';
 import 'package:gis_task/features/bulkblock/presentation/styling/responsive_size.dart';
 import 'package:gis_task/features/bulkblock/presentation/styling/text_styles.dart';
@@ -29,18 +29,17 @@ class _BulkBlockDealsPageState extends State<BulkBlockDealsPage> {
     // dispatch events to load bulk or block deals state
     widget.getBulkOrBlockDeals();
 
-    return BlocBuilder<BulkblockBloc, BulkblockState>(
-        builder: (context, state) {
-      if (state is BulkblockInitial) {
+    return BlocBuilder<BulkcubeCubit, BulkcubeState>(builder: (context, state) {
+      if (state is BulkcubeInitial) {
         return const Center(
           child: CircularProgressIndicator(),
         );
-      } else if (state is BulkblockLoaded) {
+      } else if (state is BulkcubeLoaded) {
         return BulkBlockListBuilder(
           bulkBlockList: state.bulkBlockList,
           clientNameToFilter: widget.clientNameToFilter,
         );
-      } else if (state is BulkblockError) {
+      } else if (state is BulkcubeError) {
         return Text(
           'Unable to fetch deals:\n' + state.message,
           style: buildNoResultsStyle(),
